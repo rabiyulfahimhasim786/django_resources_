@@ -1,3 +1,15 @@
+# Reference links 
+
+https://www.geeksforgeeks.org/django-models/
+
+https://docs.djangoproject.com/en/4.0/topics/db/models/
+
+https://www.geeksforgeeks.org/modelserializer-in-serializers-django-rest-framework/
+
+https://www.django-rest-framework.org/tutorial/1-serialization/
+
+https://www.django-rest-framework.org/api-guide/serializers/
+
 # Developing Django on Repl.it
 
 - Fork this template to get started
