@@ -1,0 +1,6 @@
+references 
+
+https://learndjango.com/tutorials/django-file-and-image-uploads-tutorial
+
+
+https://www.geeksforgeeks.org/python-uploading-images-in-django/
