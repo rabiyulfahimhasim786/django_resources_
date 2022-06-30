@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Images To PDF | Convert PNG/JPG to PDF</title>
+    <link rel="stylesheet" href="{% static 'home.css' %}" />
+</head>
+<body>
+{% block body %}
+<h1 class="heading">Image To PDF</h1>
+<img class = 'img1' src="{% static 'img_to_pdf.png' %}"/><br>
+<script src="{% static 'update.js' %}"></script>
+<form method="post" action="simple_upload" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="file-drop-area">
+      <span class="fake-btn">Choose files</span>
+      <span class="file-msg" id="change">or drag and drop files here</span>
+      <input name='myfile' class="file-input" type="file" multiple required onclick="update_file()">
+    </div><br><br>
+    <div>
+        <input class="btn text" type="submit">
+    </div>
+</form>
+
+<p class="note">*Note: Pdf will be made lexicographically according to there name</p>
+
+{% endblock body %}
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends 'test.html' %}
+{% load static %}
+{% block body %}
+<!--<h1>{{filename}}</h1>-->
+<h1 class="heading">Your PDF file is ready!!</h1>
+<img class="img2" src="{% static 'pdf_img.png' %}">
+<a href="{% static 'converted_pdf.pdf' %}" download>
+    <button type="button" class="btn text">Download</button>
+</a>
+{% endblock body %}
+
