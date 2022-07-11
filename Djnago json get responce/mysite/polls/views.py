@@ -62,7 +62,7 @@ def botkv_views(request):
     a = list(reduce(lambda x, y: x + y, latest.items()))
     #print(a[1])
     urllink = a[1]
-    #https://ocr-textract-key-value-output.s3.amazonaws.com/json/data.json
+    #https://bucket_name.s3.amazonaws.com/json/data.json
     url = f"https://bucket_name.s3.amazonaws.com/{urllink}"
     print(url)
     datas = {"key": url}
