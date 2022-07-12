@@ -6,6 +6,10 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('table/', views.download_dir, name='download_dir'),
+    path('json/', views.some_views, name='some_views'),
+    path('tables/', views.bot_views, name='bot_views'),
+    path('keyvalue/', views.botkv_views, name='botkv_views'),
     #path('currencies/', views.CurrencyList.as_view()),
     #path('currencies/<int:pk>/', views.CurrencyDetail.as_view()),
     path('dropbox/', views.DropboxList.as_view()),
