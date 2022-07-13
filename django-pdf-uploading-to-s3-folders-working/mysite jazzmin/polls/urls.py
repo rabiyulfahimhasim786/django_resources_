@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('table/', views.download_dir, name='download_dir'),
     path('json/', views.some_views, name='some_views'),
+    path('tablesjson/', views.Fetch_url, name='Fetch_url'),
     path('tables/', views.bot_views, name='bot_views'),
     path('keyvalue/', views.botkv_views, name='botkv_views'),
     #path('currencies/', views.CurrencyList.as_view()),
