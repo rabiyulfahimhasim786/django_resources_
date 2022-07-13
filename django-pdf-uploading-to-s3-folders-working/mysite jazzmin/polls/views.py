@@ -22,14 +22,68 @@ from functools import reduce
 #import boto3
 ACCESS_KEY = "ACCESS_KEY"
 SECRET_KEY = "SECRET_KEY"
+#import boto3
+from botocore.exceptions import ClientError
+import datetime
+#from datetime import datetime, timedelta
+from datetime import timedelta
 
-from functools import reduce
+#from functools import reduce
 
 def index(request):
     return HttpResponse("Hello, world.")
 
 def some_views(request):
     return JsonResponse({"key": "value"})
+
+
+ACCESS_KEY = "ACCESS_KEY"
+SECRET_KEY = "SECRET_KEY"
+def Fetch_url(request):
+    #vTime = datetime.datetime.now() - datetime.timedelta(minutes=2)
+    vTime = datetime.datetime.now() - datetime.timedelta(days=4)
+    last_modified_timestamp = vTime
+    s3_files_path = "s3://bucket_name/tables" # we need to mentions bucket_name is excat AWS s3 bucket name
+    if 's3://' not in s3_files_path:
+        raise Exception('Given path is not a valid s3 path.')
+
+    session = boto3.session.Session()
+    s3_resource = session.resource('s3', aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY)
+    bucket_token = s3_files_path.split('/')
+    bucket = bucket_token[2]
+    folder_path = bucket_token[3:]
+    prefix = ""
+    for path in folder_path:
+        prefix = prefix + path + '/'
+    try:
+        result = s3_resource.meta.client.list_objects(Bucket=bucket, Prefix=prefix)
+    except ClientError as e:
+        raise Exception("boto3 client error in list_all_objects_based_on_last_modified function: " + e.__str__())
+    except Exception as e:
+        raise Exception(
+            "Unexpected error in list_all_objects_based_on_last_modifiedfunction of s3 helper: " + e.__str__())
+    filtered_file_names = []
+    for obj in result['Contents']:
+        if str(obj["LastModified"]) >= str(last_modified_timestamp):
+            full_s3_file = "https://" + bucket + ".s3.amazonaws.com/" + obj["Key"]
+            filtered_file_names.append(full_s3_file)
+    tablesdata = filtered_file_names
+    json_object = {'key': tablesdata}
+    return JsonResponse(json_object)
+    #return filtered_file_names
+    
+    #newTime = datetime.datetime.now() - datetime.timedelta(days=2)
+    #vTime = datetime.datetime.now() - datetime.timedelta(minutes=2)
+
+    #print(Fetch_url(vTime))
+
+
+    #print(Fetch_url("2022-07-01 12:19:56.986445+00:00")) 
+
+#def json_view(request):
+#    json_object = {'key': "value"}
+#    return JsonResponse(json_object)
+
 
 def download_dir(request):
     s3_client = boto3.client('s3', aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY)
