@@ -115,7 +115,7 @@ pip install django django-extensions pandas plotly
 If you want to know more about django-extensions, read the documentation, especially the page about its runscript functionality.’
 
 6. Add the string 'django_extensions' to the list of INSTALLED_APPS in project/settings.py. Leave the other lines without change.
-
+#
 INSTALLED_APPS = [    
     'django.contrib.admin',
     'django.contrib.auth',
@@ -127,7 +127,7 @@ INSTALLED_APPS = [
     'films.apps.FilmsConfig',    # add this:
     'django_extensions',
 ]
-
+#
 7. Apply the migrations files to create the tables in the database:
 
 python manage.py migrate
