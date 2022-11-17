@@ -4,7 +4,7 @@
 <p style="float: right;">Author: <a href="https://linktr.ee/fabriciobarbacena">Fabrício Barbacena</a></p>
 <br />
 <br />
-
+https://towardsdatascience.com/use-python-scripts-to-insert-csv-data-into-django-databases-72eee7c6a433
 ## Project Description
 <br />
 
